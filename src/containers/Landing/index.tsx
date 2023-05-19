@@ -3,11 +3,11 @@ import { LocationIcon, MailIcon } from "@/components/icons";
 import { Button } from "@/components/buttons";
 export const Landing: React.FC = (): JSX.Element => {
   return (
-    <div className="flex items-center justify-between w-full h-full min-h-screen px-24">
+    <div className="flex flex-col md:flex-row items-center justify-start md:justify-between mt-32 lg:mt-0 w-full h-full min-h-screen px-2 md:px-24">
       {/* intro message  */}
-      <div className="flex flex-col space-y-6">
-        <h1 className="font-bold text-6xl">
-          <span className="flex">
+      <div className="flex flex-col space-y-6 items-center md:items-start">
+        <h1 className="font-bold text-6xl text-center md:text-left">
+          <span className="flex justify-center md:justify-start md:w-full">
             Hi
             <Image
               src="/images/icon-waving.svg"
@@ -21,7 +21,7 @@ export const Landing: React.FC = (): JSX.Element => {
           <span className="text-blue-500">Jillo Woche.</span>
           <br />I build things for web.
         </h1>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 items-center md:items-start">
           <div className="flex items-center justify-start space-x-2">
             <LocationIcon className="fill-blue-200" />
             <span className="text-blue-200">
@@ -50,11 +50,11 @@ export const Landing: React.FC = (): JSX.Element => {
       </div>
 
       {/* image  */}
-      <div className="flex flex-col flex-shrink-0 items-center justify-center">
-        <div className="p-3 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center">
+      <div className="flex flex-col flex-shrink-0 items-center justify-center mt-12 md:mt-0">
+        <div className="p-3 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center flex-shrink-0">
           <div className="flex items-center justify-center p-3 rounded-full bg-blue-500">
             <Image
-              className="rounded-full bg-blue-900 w-64 h-64"
+              className="rounded-full bg-blue-900 w-64 h-64 flex-shrink-0"
               src="/images/icon-me.webp"
               alt="doodles"
               width={200}

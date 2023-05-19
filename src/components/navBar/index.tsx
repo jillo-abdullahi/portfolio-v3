@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { GithubIcon, LinkedInIcon } from "@/components/icons";
+import { portfolioLinks } from "@/utils/constants";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "About me", href: "/about", current: false },
-  { name: "Tech stacks", href: "#", current: false },
+  { name: "About Me", href: "/about", current: false },
+  { name: "Tech Stack", href: "#", current: false },
   { name: "Projects", href: "#", current: false },
-  { name: "Contact", href: "#", current: false },
 ];
 
 const classNames = (...classes) => {
@@ -19,10 +20,10 @@ const classNames = (...classes) => {
 
 export const NavBar: React.FC = (): JSX.Element => {
   return (
-    <Disclosure as="nav" className="bg-transparent">
+    <Disclosure as="nav" className="bg-transparent fixed left-0 right-0">
       {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="bg-blue-900">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-24 lg:px-24">
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
@@ -40,21 +41,30 @@ export const NavBar: React.FC = (): JSX.Element => {
               <div className="flex items-center">
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
-                    <div
-                      key={item.name}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      <Link href={item.href}>{item.name}</Link>
-                    </div>
+                    <Link key={item.name} href={item.href}>
+                      <div
+                        className={classNames(
+                          item.current
+                            ? "text-blue-500 cursor-default"
+                            : "text-blue-200 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2"
+                        )}
+                        aria-current={item.current ? "page" : undefined}
+                      >
+                        {item.name}
+                      </div>
+                    </Link>
                   ))}
                 </div>
-                <div className="-ml-2 mr-2 flex items-center md:hidden">
+                <div className="flex items-center justify-between space-x-4 ml-4">
+                  <a href={portfolioLinks.github} target="_blank">
+                    <GithubIcon />
+                  </a>
+                  <a href={portfolioLinks.linkedin} target="_blank">
+                    <LinkedInIcon />
+                  </a>
+                </div>
+                <div className="ml-4 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
@@ -64,20 +74,6 @@ export const NavBar: React.FC = (): JSX.Element => {
                       <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
-                </div>
-                <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
-                  <button
-                    type="button"
-                    className="rounded-md bg-indigo-500 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 flex items-center justify-start space-x-2"
-                  >
-                    <Image
-                      src="/images/icon-download.svg"
-                      alt="download"
-                      width={20}
-                      height={20}
-                    />
-                    <span>Download CV</span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -101,7 +97,7 @@ export const NavBar: React.FC = (): JSX.Element => {
               ))}
             </div>
           </Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   );
