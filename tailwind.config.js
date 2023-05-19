@@ -7,6 +7,9 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    variants: {
+      fill: ["hover"], // Enable the hover variant for the fill utility class
+    },
     extend: {
       colors: {
         blue: {
@@ -27,6 +30,20 @@ module.exports = {
           DEFAULT: "#EC5757",
         },
       },
+      fill: {
+        blue: {
+          900: "#141625",
+          800: "#0C0E16",
+          700: "#1E2139",
+          600: "#252945",
+          500: "#7C5DFA",
+          400: "#7E88C3",
+          300: "#9277FF",
+          200: "#888EB0",
+          100: "#DFE3FA",
+        },
+      },
+
       maxWidth: {
         730: "45.625rem", // 730px
       },
