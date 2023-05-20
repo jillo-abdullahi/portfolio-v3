@@ -12,5 +12,6 @@ export const portfolioProjects = [
     preview: "https://memory-game-green-nine.vercel.app/",
     github: "https://github.com/jillo-abdullahi/memory-game",
     stacks: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    completed: true,
   },
 ];
