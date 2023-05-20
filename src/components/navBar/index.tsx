@@ -1,28 +1,60 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { GithubIcon, LinkedInIcon } from "@/components/icons";
 import { portfolioLinks } from "@/utils/constants";
 
-const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "About Me", href: "/about", current: false },
-  { name: "Tech Stack", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-];
-
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
 
 export const NavBar: React.FC = (): JSX.Element => {
+  const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
+
+  const pathname = usePathname();
+  const navigation = [
+    { name: "Home", href: "/", current: pathname === "/" },
+    { name: "About Me", href: "/about", current: pathname === "/about" },
+    {
+      name: "Tech Stack",
+      href: "/stacks",
+      current: pathname === "/stacks",
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+      current: pathname === "/projects",
+    },
+  ];
+
+  // change navbar background on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const scrollOffset = 20;
+
+      if (scrollTop > scrollOffset) {
+        setNavbarBackground("bg-blue-900 bg-opacity-90");
+      } else {
+        setNavbarBackground("transparent");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Disclosure as="nav" className="bg-transparent fixed left-0 right-0">
       {({ open }) => (
-        <div className="bg-blue-900">
+        <div className={navbarBackground}>
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-24 lg:px-24">
             <div className="flex h-16 justify-between">
               <div className="flex">
@@ -39,7 +71,7 @@ export const NavBar: React.FC = (): JSX.Element => {
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4 mr-2">
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <div
@@ -56,7 +88,7 @@ export const NavBar: React.FC = (): JSX.Element => {
                     </Link>
                   ))}
                 </div>
-                <div className="flex items-center justify-between space-x-4 ml-4">
+                <div className="flex items-center justify-between space-x-4 pl-6 border-l border-blue-200">
                   <a href={portfolioLinks.github} target="_blank">
                     <GithubIcon />
                   </a>

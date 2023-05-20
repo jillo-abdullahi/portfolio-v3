@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { LocationIcon, MailIcon } from "@/components/icons";
 import { Button } from "@/components/buttons";
+
 export const Landing: React.FC = (): JSX.Element => {
+  const handleCVDowndload = () => {
+    window.open("/files/resume.pdf", "_blank");
+  };
   return (
     <div className="flex flex-col md:flex-row items-center justify-start md:justify-between mt-32 lg:mt-0 w-full h-full min-h-screen px-2 md:px-24">
       {/* intro message  */}
@@ -36,7 +40,7 @@ export const Landing: React.FC = (): JSX.Element => {
             <span className="text-blue-200">jayloabdullahi@gmail.com</span>
           </a>
         </div>
-        <Button width="w-fit">
+        <Button width="w-fit" handleClick={handleCVDowndload}>
           <div className="flex items-center justify-start space-x-2">
             <Image
               src="/images/icon-download.svg"
