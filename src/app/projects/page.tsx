@@ -3,8 +3,8 @@ import { ProjectsContainer } from "@/containers/Projects";
 
 export default function Projects() {
   return (
-    <Main>
+    <div className="flex min-h-screen flex-col items-center justify-between bg-blue-900">
       <ProjectsContainer />
-    </Main>
+    </div>
   );
 }

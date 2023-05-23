@@ -52,7 +52,7 @@ export const NavBar: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <Disclosure as="nav" className="bg-transparent fixed left-0 right-0">
+    <Disclosure as="nav" className="bg-transparent fixed left-0 right-0 z-50">
       {({ open }) => (
         <div className={navbarBackground}>
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-24 lg:px-24">
@@ -71,7 +71,7 @@ export const NavBar: React.FC = (): JSX.Element => {
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4 mr-2">
+                <div className="hidden md:ml-6 md:flex md:items-center pr-2 md:space-x-4 border-r border-blue-200">
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <div
@@ -88,7 +88,7 @@ export const NavBar: React.FC = (): JSX.Element => {
                     </Link>
                   ))}
                 </div>
-                <div className="flex items-center justify-between space-x-4 pl-6 border-l border-blue-200">
+                <div className="flex items-center justify-between space-x-4 pl-6 ">
                   <a href={portfolioLinks.github} target="_blank">
                     <GithubIcon />
                   </a>
